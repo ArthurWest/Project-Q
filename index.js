@@ -79,6 +79,25 @@ Vue.component('frame-div', {
 			Canvas.render()	
 		}
 	},
+	computed: {
+	  	image_el: async function()
+	  	{
+	  		return new Promise((resolve, reject) => {
+	  			const image_el = document.createElement("img")
+	  			image_el.src = this.image
+	        	image_el.onload = () => resolve(image_el);
+	        	image_el.onerror = reject;
+	    	});
+	  		
+	  		
+			// i
+			// image_el.onload = function()
+			// {
+			// 	return image_el
+			// }
+			
+	  	}
+    },
 	watch : {
                text:function(val) {
                   this.updated()
@@ -106,7 +125,7 @@ Vue.component('frame-div', {
                },
                text_y : function (val) {
 				this.updated()
-				}
+			   },
             },
 	template: `<div class="frame">
 					<div class="frame_top">
@@ -164,7 +183,7 @@ const app = new Vue({
   	},
   },
   mounted() {
-  	this.data_create()
+  	// this.data_create()
   },
   methods: {
   	data_create()
@@ -178,5 +197,5 @@ const app = new Vue({
 			
 		})
   	}
-  }
+  },
 })

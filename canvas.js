@@ -121,15 +121,15 @@ const Canvas = {
 		}
 		return amount
 	},
-	draw_frame(ctx, frame_div, row_index, col_index, width_amount)
+	async draw_frame(ctx, frame_div, row_index, col_index, width_amount)
 	{
-
-		const image_el = document.createElement("img")
-		image_el.src = frame_div.image
+		let image_el = await frame_div.image_el
+		
+		console.log(image_el)
 
 		const Canvas_ctx = this
 		// image_el.onload = () => {
-		
+
 			const x_pos = col_index * this.frame_width
 			const y_pos = row_index * this.frame_height
 		
