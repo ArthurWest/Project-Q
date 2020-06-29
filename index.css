@@ -1,0 +1,63 @@
+.data_row {
+	display: flex;
+	flex-wrap: wrap;
+	border-bottom: 1px solid black;
+}
+.frame {
+	width: 300px;
+	position: relative;
+	margin: 5px;
+	padding: 5px;
+	
+	border: 1px solid #dadce0;
+	/*box-shadow: 0px 7px 19px -9px rgba(0,0,0,0.75);*/
+}
+
+.frame_top {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-bottom: 5px;
+}
+.frame_row {
+	display: flex;
+	flex-wrap: wrap;
+	padding-bottom: 5px;
+}
+.frame_toggle {
+	color: black;
+	background-color: white;
+	/*background-color: #008FD5;*/
+	/*border-radius: 50%;*/
+	border: none;
+	padding: 5px;
+	cursor: pointer;
+}
+.frame_text {
+	padding: 5px;
+	width: 100%;
+}
+.frame_link {
+	flex: 2;
+	padding: 5px;
+	border-left: right;
+}
+.frame_btn_file {
+	border: none;
+	display: block;
+	color: white;
+	background-color: #008FD5;
+	padding: 5px;
+	cursor: pointer;
+}
+.frame_file {
+	display: none;
+}
+.frame_settings {
+	/*display: none;*/
+}
+.frame_setting {
+	flex: 1;
+	padding: 5px;
+	width: 60px;
+}

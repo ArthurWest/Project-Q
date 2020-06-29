@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Project Q</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript" src="canvas.js" defer></script>
+	<script type="text/javascript" src="index.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<div id="app">
+
+		<div id="data">
+			<input type="number" placeholder="rows" v-model.number="data_rows_amount" min="0" title="Rows">
+			<input type="number" placeholder="columns" v-model.number="frames_amount" min="0" title="Columns">
+			<input type="number" placeholder="Frame width" v-model.number="frame_width" min="1" title="Frame width">
+			<input type="number" placeholder="Frame height" v-model.number="frame_height" min="1" title="Frame height">
+			<data-row v-for="f_index in data_rows_amount" v-bind:key="f_index" v-bind:frames_amount="frames_amount" ref="data_row">
+			</data-row>
+		</div>
+		<canvas id="canvas_el" style="max-width: 100%;">Your browser doesn't suppor Canvas</canvas>
+	</div>
+</body>
+</html>
