@@ -51,7 +51,7 @@ Vue.component('frame-div', {
 			scale_x: 1,
 			scale_y: 1,
 			text_x: 150,
-			text_y: 50,
+			text_y: -20,
 		}
 	},
 	methods: {
@@ -84,6 +84,7 @@ Vue.component('frame-div', {
 	  	{
 	  		return new Promise((resolve, reject) => {
 	  			const image_el = document.createElement("img")
+	  			// image_el.setAttribute('crossorigin', 'anonymous')
 	  			image_el.src = this.image
 	        	image_el.onload = () => resolve(image_el);
 	        	image_el.onerror = reject;
@@ -157,7 +158,7 @@ Vue.component('frame-div', {
 })
 
 const app = new Vue({
-  el: '#data',
+  el: '#app',
   data: {
     message: 'Hello Vue!',
     data_rows_amount: 1,
@@ -196,6 +197,8 @@ const app = new Vue({
 			})
 			
 		})
-  	}
+  	},
   },
 })
+
+app.data_create()

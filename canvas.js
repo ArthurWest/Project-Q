@@ -106,8 +106,12 @@ const Canvas = {
 			ctx.fillText(line, x_pos, y_pos)
 		}
 	},
-	find_end_index(image, row, col)
+	find_width(image, row, col)
 	{
+		//Find out how many frames wide is the current image, 
+		//Current frame is included
+
+		
 		let amount = 0;
 		for (let i = col; i < this.grid[row].length; i++)
 		{
@@ -124,8 +128,6 @@ const Canvas = {
 	async draw_frame(ctx, frame_div, row_index, col_index, width_amount)
 	{
 		let image_el = await frame_div.image_el
-		
-		console.log(image_el)
 
 		const Canvas_ctx = this
 		// image_el.onload = () => {
@@ -151,17 +153,17 @@ const Canvas = {
 
 			const text_y = 10
 			const text_pos_x = x_pos + dWidth/2 
-			let text_pos_y = this.frame_height * (row_index+1) - text_y
+			let text_pos_y = y_pos + dHeight //- frame_div.text_y
 			const text_max_width = dWidth - frame_div.text_x
 			const text_line_height = frame_div.font * 1.5
 
 
+			const test_text_y = this.find_y(ctx, frame_div.text, text_pos_x, text_pos_y, text_max_width, text_line_height)
 
-			while (this.find_y(ctx, frame_div.text, text_pos_x, text_pos_y, text_max_width, text_line_height) > dHeight*(row_index+1))
-			{
-				text_pos_y = text_pos_y - 10
+			if (test_text_y > y_pos + dHeight) {
+				//Text position = frame_y - text_height - offset
+				text_pos_y = (y_pos + dHeight) - (test_text_y - text_pos_y) - frame_div.text_y
 			}
-
 		
 
 			ctx.fillStyle = "black"
@@ -189,13 +191,15 @@ const Canvas = {
 			for (let j = 0; j < this.cols; j++)
 			{
 				const frame_div = this.grid[i][j]
-				const width_amount = this.find_end_index(frame_div.image, i, j)
+				const width_amount = this.find_width(frame_div.image, i, j)
 			
 				this.draw_frame(ctx, frame_div, i, j, width_amount)
 
-				j = j + width_amount - 1
+				//If the frame is wider than 1 frame width, we render it fully and skip 
+				//the other frames here because they are already render as a part of the first frame
+				j = j + width_amount - 1 
 
 			}
-		} 
+		}
 	}
 }
